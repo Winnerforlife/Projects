@@ -13,7 +13,17 @@ const getData = url => fetch(url)
     })
     .catch(err => console.error(err));
 
-export const getTriends = async (type = 'all', perio = 'day', page = 1) => {
-    const url = `${BASE_URL}trending/${type}/${perio}?api_key=${API_KEY}${LANGUAGE}&page=${page}`
+export const getTriends = async (type = 'all', perio = 'week', page = 1) => {
+    const url = `${BASE_URL}trending/${type}/${perio}?api_key=${API_KEY}${LANGUAGE}&page=${page}`;
+    return await getData(url);
+};
+
+export const getPopular = async (type, page = 1) => {
+    const url = `${BASE_URL}${type}/popular?api_key=${API_KEY}${LANGUAGE}&page=${page}`;
+    return await getData(url);
+};
+
+export const getTop = async (type, page = 1) => {
+    const url = `${BASE_URL}${type}/top_rated?api_key=${API_KEY}${LANGUAGE}&page=${page}`;
     return await getData(url);
 };
