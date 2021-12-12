@@ -2,7 +2,6 @@ const API_KEY = '6770e2e3c60c1e4470bd746b3a1f04e6';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const LANGUAGE = '&language=ru-RU';
 
-//trending/all/day?api_key=<<api_key>>
 
 const getData = url => fetch(url)
     .then(response => {
@@ -25,5 +24,15 @@ export const getPopular = async (type, page = 1) => {
 
 export const getTop = async (type, page = 1) => {
     const url = `${BASE_URL}${type}/top_rated?api_key=${API_KEY}${LANGUAGE}&page=${page}`;
+    return await getData(url);
+};
+
+export const getVideo = async (id, type) => {
+    const url = `${BASE_URL}${type}${id}/videos?api_key=${API_KEY}${LANGUAGE}`;
+    return await getData(url);
+};
+
+export const search = async (query, page) => {
+    const url = `${BASE_URL}search/multi?api_key=${API_KEY}${LANGUAGE}&page=${page}&include_adult=false&query=${query}`;
     return await getData(url);
 };

@@ -6,7 +6,8 @@ const closeMenu = (nav, active) => {
     nav.classList.remove(active);
 };
 
-const slideMenu = ({openBtn, menu, classActiveMenu, closeTrigger}) => {
+const slideMenu = (settings) => {
+    const {openBtn, menu, classActiveMenu, closeTrigger} = settings;
     const burgerBtn = document.querySelector(openBtn);
     const navigation = document.querySelector(menu);
     const navigationClose = document.querySelectorAll(closeTrigger);
@@ -15,11 +16,11 @@ const slideMenu = ({openBtn, menu, classActiveMenu, closeTrigger}) => {
         openMenu(navigation, classActiveMenu);
     });
 
-    navigationClose.forEach(item => {
+    navigationClose.forEach((item) => {
         item.addEventListener('click', () => {
             closeMenu(navigation, classActiveMenu);
-        })
-    })
+        });
+    });
 };
 
 export default slideMenu;
