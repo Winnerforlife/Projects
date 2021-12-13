@@ -1,16 +1,15 @@
-import { getPopular, getTop, getTrends } from './services.js';
-import renderCard from './renderCard.js';
-
+import { getPopular, getTop, getTrends } from "./services.js";
+import renderCard from "./renderCard.js";
 
 const title = document.querySelector('.other-films__title');
-const filmWeek = document.querySelector('.film-week'); 
+const filmWeek = document.querySelector('.film-week');
 const getNav = document.querySelectorAll('.get-nav');
 
 const menuLink = () => {
-    getNav.forEach(nav => {
+    getNav.forEach((nav) => {
         nav.addEventListener('click', (event) => {
             const target = event.target.closest('.get-nav__link');
-            if(target){
+            if (target) {
                 event.preventDefault();
 
                 filmWeek.style.display = 'none';
@@ -25,7 +24,7 @@ const menuLink = () => {
                 // Популярные фильмы
                 if (target.classList.contains('get-nav__link_popular-movies')) {
                     getPopular('movie')
-                        .then(data => renderCard(data.results))
+                        .then((data) => renderCard(data, 'movie'));
                 }
                 // Популярные сериалы
                 if (target.classList.contains('get-nav__link_popular-tv')) {
@@ -42,6 +41,7 @@ const menuLink = () => {
                     getTop('tv')
                         .then((data) => renderCard(data, 'tv'));
                 }
+
             }
         });
     });

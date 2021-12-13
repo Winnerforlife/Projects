@@ -8,7 +8,7 @@ const searchForm = document.querySelector('.header__search-form');
 const searchInput = document.querySelector('.header__search-input');
 
 const search = () => {
-    searchForm.addEventListener('submit', event => {
+    searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
         if (!searchInput.value) return;
@@ -16,7 +16,7 @@ const search = () => {
         searchGet(searchInput.value)
             .then(data => {
                 if(data.results.length) {
-                    renderCard(data.results);
+                    renderCard(data, '');
                 }else {
                     throw 'К сожалению по вашему запросу ничего не найдено :('
                 }
@@ -27,8 +27,9 @@ const search = () => {
             })
             .catch(err => {
                 title.textContent = err;
-            })
-    })
+            });
+            searchForm.reset();
+    });
 };
 
 export default search;
